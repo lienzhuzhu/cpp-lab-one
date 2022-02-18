@@ -36,24 +36,24 @@ Figured out that input_file.txt has to be in same folder as application file, no
 I found that "strings" was being printed twice and figured out that if I extract the first string before checking 
 if the ifs extraction operator could still extract another string:
 
-if (ifs.is_open()) { 
+    if (ifs.is_open()) { 
 
-    // this
-    
-    string w;
-    ifs >> w;
-     
-    while (ifs) {
-        v_ref.push_back(w);
-        ifs >> w;
-    }
+        // this
 
-    // instead of this    
-    while (ifs) {
+        string w;
         ifs >> w;
-        v_ref.push_back(w);
+
+        while (ifs) {
+            v_ref.push_back(w);
+            ifs >> w;
+        }
+
+        // instead of this    
+        while (ifs) {
+            ifs >> w;
+            v_ref.push_back(w);
+        }
     }
-}
 
 
 Testing:
@@ -99,65 +99,65 @@ EXTRA CREDIT
 EC1
 ---
 
-[lienz@shell ~]$ ls
-332-labs  Downloads              etude.fasta  My Documents  Pictures  Templates  WINDOWS
-Desktop   Etude_DNAMaster.dnam5  Music        perl5         Public    Videos     winprofile
-[lienz@shell ~]$
+    [lienz@shell ~]$ ls
+    332-labs  Downloads              etude.fasta  My Documents  Pictures  Templates  WINDOWS
+    Desktop   Etude_DNAMaster.dnam5  Music        perl5         Public    Videos     winprofile
+    [lienz@shell ~]$
 
 
 EC2
 ---
 
-[lienz@shell ~]$ cd cse332/lab1/
-[lienz@shell lab1]$ make
-g++ -o lien-lab1.exe -DUNIX   -Wall -W -g -pedantic lien-lab1.cpp -lnsl
-lien-lab1.cpp: In function ‘int main(int, char**)’:
-lien-lab1.cpp:37:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
-         while (i < word.length()) {
-                                ^
-[lienz@shell lab1]$
+    [lienz@shell ~]$ cd cse332/lab1/
+    [lienz@shell lab1]$ make
+    g++ -o lien-lab1.exe -DUNIX   -Wall -W -g -pedantic lien-lab1.cpp -lnsl
+    lien-lab1.cpp: In function ‘int main(int, char**)’:
+    lien-lab1.cpp:37:32: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+             while (i < word.length()) {
+                                    ^
+    [lienz@shell lab1]$
 
 
 
-[lienz@shell ~]$ cd cse332/lab1/
-[lienz@shell lab1]$ ls
-enums.h  lien-lab1.cpp  lien-lab1.exe  Makefile  Templates.DB
-[lienz@shell lab1]$ touch input_file.txt
-[lienz@shell lab1]$ ls
-enums.h  input_file.txt  lien-lab1.cpp  lien-lab1.exe  Makefile  Templates.DB
-[lienz@shell lab1]$ input_
-bash: input_: command not found...
-[lienz@shell lab1]$ open input_file.txt
-Couldn't get a file descriptor referring to the console
-[lienz@shell lab1]$ input_file.txt
-bash: input_file.txt: command not found...
-[lienz@shell lab1]$ cat input_file.txt
-[lienz@shell lab1]$ echo 'test string' >> input_file.txt
-[lienz@shell lab1]$ cat input_file.txt
-test string
-[lienz@shell lab1]$ echo '1 2 3 4 10' >> input_file.txt
-[lienz@shell lab1]$ cat input_file.txt
-test string
-1 2 3 4 10
-[lienz@shell lab1]$ echo ' ' >> input_file.txt
-[lienz@shell lab1]$ cat input_file.txt
-test string
-1 2 3 4 10
+    [lienz@shell ~]$ cd cse332/lab1/
+    [lienz@shell lab1]$ ls
+    enums.h  lien-lab1.cpp  lien-lab1.exe  Makefile  Templates.DB
+    [lienz@shell lab1]$ touch input_file.txt
+    [lienz@shell lab1]$ ls
+    enums.h  input_file.txt  lien-lab1.cpp  lien-lab1.exe  Makefile  Templates.DB
+    [lienz@shell lab1]$ input_
+    bash: input_: command not found...
+    [lienz@shell lab1]$ open input_file.txt
+    Couldn't get a file descriptor referring to the console
+    [lienz@shell lab1]$ input_file.txt
+    bash: input_file.txt: command not found...
+    [lienz@shell lab1]$ cat input_file.txt
+    [lienz@shell lab1]$ echo 'test string' >> input_file.txt
+    [lienz@shell lab1]$ cat input_file.txt
+    test string
+    [lienz@shell lab1]$ echo '1 2 3 4 10' >> input_file.txt
+    [lienz@shell lab1]$ cat input_file.txt
+    test string
+    1 2 3 4 10
+    [lienz@shell lab1]$ echo ' ' >> input_file.txt
+    [lienz@shell lab1]$ cat input_file.txt
+    test string
+    1 2 3 4 10
 
-[lienz@shell lab1]$ echo '    str1ng  5 ' >> input_file.txt
-[lienz@shell lab1]$ cat input_file.txt
-test string
-1 2 3 4 10
+    [lienz@shell lab1]$ echo '    str1ng  5 ' >> input_file.txt
+    [lienz@shell lab1]$ cat input_file.txt
+    test string
+    1 2 3 4 10
 
-    str1ng  5
-[lienz@shell lab1]$ ./lien-lab1.exe input_file.txt
-test
-string
-str1ng
-1
-2
-3
-4
-10
-5
-[lienz@shell lab1]$
+        str1ng  5
+    [lienz@shell lab1]$ ./lien-lab1.exe input_file.txt
+    test
+    string
+    str1ng
+    1
+    2
+    3
+    4
+    10
+    5
+    [lienz@shell lab1]$
