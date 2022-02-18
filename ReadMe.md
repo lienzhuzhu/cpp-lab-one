@@ -1,5 +1,5 @@
 
-Author: Lien Zhu
+#Author: Lien Zhu
 
 CSE 332 Lab 1 - Basic C++ Program Structure and Data Movement
 
