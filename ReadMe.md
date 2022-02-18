@@ -1,7 +1,7 @@
 
-#Author: Lien Zhu
+# Author: Lien Zhu
 
-CSE 332 Lab 1 - Basic C++ Program Structure and Data Movement
+# CSE 332 Lab 1 - Basic C++ Program Structure and Data Movement
 
 This program reads in an input file specified by the user from command line and:
 1. parses the content of the file by whitespace
@@ -36,23 +36,23 @@ Figured out that input_file.txt has to be in same folder as application file, no
 I found that "strings" was being printed twice and figured out that if I extract the first string before checking 
 if the ifs extraction operator could still extract another string:
 
-if (ifs.is_open()) {
-        
+if (ifs.is_open()) { 
+
+    // this
+    
     string w;
     ifs >> w;
-    
-    
-    // this 
+     
     while (ifs) {
         v_ref.push_back(w);
         ifs >> w;
     }
 
     // instead of this    
-    /*while (ifs) {
+    while (ifs) {
         ifs >> w;
         v_ref.push_back(w);
-    }*/
+    }
 }
 
 
